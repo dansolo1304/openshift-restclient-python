@@ -13,6 +13,7 @@
 # https://github.com/ansible/ansible/blob/stable-2.9/lib/ansible/modules/clustering/k8s/k8s_auth.py
 
 import requests
+import time
 from requests_oauthlib import OAuth2Session
 from urllib3.util import make_headers
 from urllib.parse import parse_qs, urlencode, urlparse
@@ -39,10 +40,13 @@ class OCPLoginConfiguration(KubeConfig):
                  api_key=None, api_key_prefix=None,
                  ocp_username=None, ocp_password=None,
                  discard_unknown_keys=False,
+                 renew_session=True
                  ):
 
         self.ocp_username = ocp_username
         self.ocp_password = ocp_password
+        if self.renew_session:
+            self.__renew_session()
 
         super(OCPLoginConfiguration, self).__init__(host=host, api_key=None,
                 api_key_prefix=None, username=None,
@@ -127,3 +131,9 @@ class OCPLoginConfiguration(KubeConfig):
         }
         requests.delete(url, headers=headers, json=json, verify=self.con_verify_ca)
         # Ignore errors, the token will time out eventually anyway
+
+    def __renew_session(self):
+        while True:
+            print("Tuyentd - Debug: renew session")
+            self.login()
+            time.sleep(10)

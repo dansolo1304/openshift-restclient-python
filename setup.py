@@ -24,9 +24,9 @@ from setuptools import find_packages, setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "0.10.0dev1"
-PACKAGE_NAME = "openshift"
-DEVELOPMENT_STATUS = "3 - Alpha"
+CLIENT_VERSION = "1.0-dev"
+PACKAGE_NAME = "dansolo-openshift"
+DEVELOPMENT_STATUS = "1 - Planning"
 
 
 def extract_requirements(filename):
@@ -40,11 +40,11 @@ def extract_requirements(filename):
 setup(
     name=PACKAGE_NAME,
     version=CLIENT_VERSION,
-    description="OpenShift python client",
-    author_email="",
-    author="OpenShift",
+    description="Inheritted from OpenShift python client",
+    author_email="tuyentd@yandex.com",
+    author="Dan",
     license="Apache License Version 2.0",
-    url="https://github.com/openshift/openshift-restclient-python",
+    url="https://github.com/dansolo1304/openshift-restclient-python",
     keywords=["Swagger", "OpenAPI", "Kubernetes", "OpenShift"],
     install_requires=extract_requirements('requirements.txt'),
     packages=find_packages(include='openshift.*'),
@@ -61,5 +61,6 @@ setup(
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
+         "Programming Language :: Python :: 3.10",
     ],
 )
